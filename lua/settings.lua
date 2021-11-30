@@ -10,6 +10,7 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.encoding= 'UTF-8'
 vim.o.expandtab = true
+vim.o.cursorline = true
 vim.cmd[[colorscheme tokyonight]]
 
 require'nvim-treesitter.configs'.setup {
@@ -19,7 +20,10 @@ require'nvim-treesitter.configs'.setup {
 }
 
 require('lualine').setup {
-	options = {theme = 'tokyonight' }
+	options = {theme = 'tokyonight' },
+    sections = {
+        lualine_z = {function() return os.date("%X") end }
+    }
 }
 
 require('telescope').setup {
@@ -78,3 +82,4 @@ require("bufferline").setup {
     }
 }
 
+require "lsp_signature".setup()

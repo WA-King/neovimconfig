@@ -1,4 +1,6 @@
+-- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
+
 return require('packer').startup(function()
     --Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -20,11 +22,13 @@ return require('packer').startup(function()
 		'hrsh7th/nvim-cmp',
 		requires = {
 			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-nvim-lua'
+			'hrsh7th/cmp-nvim-lua',
+			'hrsh7th/cmp-path'
 		},
 	}
 	use {"L3MON4D3/LuaSnip"}
-	use "lukas-reineke/indent-blankline.nvim"
-	use 'folke/tokyonight.nvim'
+	use {"lukas-reineke/indent-blankline.nvim"}
+	use {'folke/tokyonight.nvim'}
+    use { "ray-x/lsp_signature.nvim"}
 
 end)
