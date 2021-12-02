@@ -28,7 +28,10 @@ return require('packer').startup(function()
 	}
 	use {"L3MON4D3/LuaSnip"}
 	use {"lukas-reineke/indent-blankline.nvim"}
-	use {'folke/tokyonight.nvim'}
+	use { 'folke/tokyonight.nvim'}
     use { "ray-x/lsp_signature.nvim"}
-
+    use { 'lewis6991/gitsigns.nvim',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
 end)
+

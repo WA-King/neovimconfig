@@ -84,60 +84,22 @@ require'lspconfig'.sumneko_lua.setup {
     },
 }
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    -- This sets the spacing and the prefix, obviously.
+    virtual_text = {
+      spacing = 4,
+      prefix = '',
+      source = "always"
+    }
+  }
+)
 
--- luasnip setup
-local luasnip = require 'luasnip'
-
--- nvim-cmp setup
-local cmp = require 'cmp'
-cmp.setup {
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        },
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item(cmp.SelectBehavior.Insert)
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item(cmp.SelectBehavior.Insert)
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end,
-    },
-    sources = {
-        {
-            name = 'nvim_lsp',
-            max_item_count=3,
-        },
-        { name = 'luasnip' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-    },
-    completion = {
-        keyword_length = 1
-    },
-}
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})

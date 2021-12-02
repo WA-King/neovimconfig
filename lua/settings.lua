@@ -1,16 +1,14 @@
 vim.o.number = true
-vim.o.hidden = true
 vim.o.showmode =true;
 vim.o.ignorecase = true
-vim.o.incsearch = true
 vim.o.cindent=true
 vim.o.smarttab=true
 vim.o.mouse = 'a'
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.encoding= 'UTF-8'
 vim.o.expandtab = true
 vim.o.cursorline = true
+vim.o.swapfile = false
 vim.cmd[[colorscheme tokyonight]]
 
 require'nvim-treesitter.configs'.setup {
@@ -52,17 +50,6 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    -- This sets the spacing and the prefix, obviously.
-    virtual_text = {
-      spacing = 4,
-      prefix = ''
-    }
-  }
-)
-
 require("indent_blankline").setup {}
 
 require("bufferline").setup {
@@ -83,3 +70,6 @@ require("bufferline").setup {
 }
 
 require "lsp_signature".setup()
+require('gitsigns').setup()
+require('plugin_setting.lsp');
+require('plugin_setting.cmp')
