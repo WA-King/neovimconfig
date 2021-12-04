@@ -69,7 +69,7 @@ require("bufferline").setup {
     }
 }
 
-require "lsp_signature".setup()
 require('gitsigns').setup()
-require('plugin_setting.lsp');
 require('plugin_setting.cmp')
+require('plugin_setting.lspconfig')
+require('plugin_setting.lsp_signature')
