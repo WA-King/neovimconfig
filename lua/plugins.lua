@@ -33,5 +33,6 @@ return require('packer').startup(function()
     use { 'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' }
     }
+    use { 'b3nj5m1n/kommentary' }
 end)
 
