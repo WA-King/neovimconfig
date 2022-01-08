@@ -12,6 +12,9 @@ vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>',{silent=true})
 vim.api.nvim_set_keymap('n', '<C-t>', ':vs<CR><C-w>l:terminal<CR>',{})
 vim.api.nvim_set_keymap('n', '<F6>', ':lua require("tools").compile()<CR>',{})
 
+vim.api.nvim_set_keymap('n', '<S-h>', '<C-w>h',{})
+vim.api.nvim_set_keymap('n', '<S-l>', '<C-w>l',{})
+
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<CR>',{})
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<CR>',{})
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<CR>',{})
@@ -28,8 +31,10 @@ vim.api.nvim_set_keymap("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", {no
 vim.api.nvim_set_keymap("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", {noremap = true, silent = true})
 
 --terminal
-vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>',{})
+vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>',{noremap = true})
 vim.api.nvim_set_keymap('t', '<C-h>', '<C-\\><C-n>:RnvimrToggle<CR>',{silent=true})
+vim.api.nvim_set_keymap('t', '<S-h>', '<C-w>h',{})
+vim.api.nvim_set_keymap('t', '<S-l>', '<C-w>l',{})
 
 --visual
 vim.api.nvim_set_keymap('v', 'kj', '<ESC>l',{})
