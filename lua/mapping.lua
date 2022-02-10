@@ -30,6 +30,10 @@ vim.api.nvim_set_keymap("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>", {no
 vim.api.nvim_set_keymap("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", {noremap = true, silent = true})
 
+vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+vim.api.nvim_set_keymap('n', '<leader>j', "<cmd>lua require'hop'.hint_char1()<cr>", {})
+
 --terminal
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>',{noremap = true})
 vim.api.nvim_set_keymap('t', '<C-h>', '<C-\\><C-n>:RnvimrToggle<CR>',{silent=true})
