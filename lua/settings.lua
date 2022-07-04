@@ -1,5 +1,4 @@
 vim.o.number = true
-vim.o.relativenumber = true
 vim.o.showmode =true;
 vim.o.ignorecase = true
 vim.o.cindent=true
@@ -13,6 +12,11 @@ vim.o.swapfile = false
 vim.o.scrolloff = 5
 vim.opt.termguicolors = true
 vim.cmd[[colorscheme tokyonight]]
+
+vim.cmd[[augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost * FormatWrite
+augroup END]]
 
 require'nvim-treesitter.configs'.setup {
     -- Modules and its options go here
@@ -79,6 +83,34 @@ require("bufferline").setup {
         end,
     }
 }
+
+-- Utilities for creating configurations
+local util = require "formatter.util"
+
+-- Provides the Format and FormatWrite commands
+require("formatter").setup {
+  -- Enable or disable logging
+  logging = true,
+  -- Set the log level
+  log_level = vim.log.levels.WARN,
+  -- All formatter configurations are opt-in
+  filetype = {
+    -- Formatter configurations for filetype "lua" go here
+    -- and will be executed in order
+    lua = {
+      -- "formatter.filetypes.lua" defines default configurations for the
+      -- "lua" filetype
+      require("formatter.filetypes.lua").stylua,
+
+    },
+
+    go = {
+      require("formatter.filetypes.go").gofmt,
+    },
+
+  }
+}
+
 
 require('gitsigns').setup()
 require('plugin_setting.cmp')

@@ -84,6 +84,12 @@ require'lspconfig'.sumneko_lua.setup {
     },
 }
 
+require'lspconfig'.cmake.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { vim.fn.stdpath('data')..'/lsp_servers/cmake/venv/bin/cmake-language-server' },
+}
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,

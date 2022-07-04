@@ -10,7 +10,8 @@ return require('packer').startup(function()
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    use {'akinsho/bufferline.nvim'}
+    -- using packer.nvim
+    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
     use {
         'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -51,5 +52,6 @@ return require('packer').startup(function()
         end
     }
     use { 'p00f/nvim-ts-rainbow' }
+    use { 'mhartington/formatter.nvim' }
 end)
 

@@ -7,9 +7,10 @@ vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<ESC>O',{})
 --normal
 vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG"+y',{ silent=true})
 vim.api.nvim_set_keymap('n', '<C-x>', 'gg=G', { silent=true })
-vim.api.nvim_set_keymap('n', '<C-h>', ':RnvimrToggle<CR>',{silent=true})
+vim.api.nvim_set_keymap('n', '<C-p>', ':RnvimrToggle<CR>',{noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>',{silent=true})
 vim.api.nvim_set_keymap('n', '<C-t>', ':vs<CR><C-w>l:terminal<CR>',{})
+vim.api.nvim_set_keymap('n', 'g<leader>', '2g;',{})
 vim.api.nvim_set_keymap('n', '<F6>', ':lua require("tools").compile()<CR>',{})
 
 vim.api.nvim_set_keymap('n', '<S-h>', '<C-w>h',{})
