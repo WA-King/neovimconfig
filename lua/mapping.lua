@@ -1,8 +1,8 @@
 vim.g.mapleader=' '
-
 --insert
 vim.api.nvim_set_keymap('i', 'kj', '<ESC>l',{})
 vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<ESC>O',{})
+vim.api.nvim_set_keymap('i', '{<s-cr>', '{<CR>}<ESC>O',{noremap = true})
 
 --normal
 vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG"+y',{ silent=true})

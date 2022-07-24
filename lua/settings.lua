@@ -97,13 +97,6 @@ require("formatter").setup {
   filetype = {
     -- Formatter configurations for filetype "lua" go here
     -- and will be executed in order
-    lua = {
-      -- "formatter.filetypes.lua" defines default configurations for the
-      -- "lua" filetype
-      require("formatter.filetypes.lua").stylua,
-
-    },
-
     go = {
       require("formatter.filetypes.go").gofmt,
     },
