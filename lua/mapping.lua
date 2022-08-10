@@ -9,7 +9,6 @@ vim.api.nvim_set_keymap('n', '<C-a>', 'ggVG"+y',{ silent=true})
 vim.api.nvim_set_keymap('n', '<C-x>', 'gg=G', { silent=true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':RnvimrToggle<CR>',{noremap = true, silent=true})
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>',{silent=true})
-vim.api.nvim_set_keymap('n', '<C-t>', ':vs<CR><C-w>l:terminal<CR>',{})
 vim.api.nvim_set_keymap('n', 'g<leader>', '2g;',{})
 vim.api.nvim_set_keymap('n', '<F6>', ':lua require("tools").compile()<CR>',{})
 
@@ -35,6 +34,16 @@ vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction 
 vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>j', "<cmd>lua require'hop'.hint_char1()<cr>", {})
 
+--lsp
+vim.api.nvim_set_keymap('n', '<leader>ca', "<cmd>Lspsaga code_action<cr>", {silent = true})
+
+vim.api.nvim_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<cr>", {})
+
+vim.api.nvim_set_keymap('n', 'gr', "<cmd>lua vim.lsp.buf.references()<cr>", {})
+vim.api.nvim_set_keymap('n', 'gi', "<cmd>lua vim.lsp.buf.implementation()<cr>", {})
+
+vim.keymap.set("n", "<C-t>", "<cmd>Lspsaga open_floaterm <CR>", { silent = true })
+vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>Lspsaga close_floaterm<CR>", { silent = true })
 --terminal
 vim.api.nvim_set_keymap('t', '<C-w>', '<C-\\><C-n><C-w>',{noremap = true})
 vim.api.nvim_set_keymap('t', '<C-h>', '<C-\\><C-n>:RnvimrToggle<CR>',{silent=true})
