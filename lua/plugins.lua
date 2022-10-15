@@ -5,7 +5,6 @@ return require('packer').startup(function()
     --Packer can manage itself
     use 'wbthomason/packer.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'kevinhwang91/rnvimr'
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}

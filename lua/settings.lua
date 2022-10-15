@@ -11,6 +11,7 @@ vim.o.cursorline = true
 vim.o.swapfile = false
 vim.o.scrolloff = 5
 vim.opt.termguicolors = true
+vim.o.ch = 0
 vim.cmd[[colorscheme tokyonight]]
 
 vim.cmd[[augroup FormatAutogroup
@@ -69,7 +70,8 @@ require("indent_blankline").setup {}
 
 require("bufferline").setup {
     options = {
-        indicator_icon = '▎',
+        indicator = {style = "icon", icon='▎'},
+        --indicator_icon = '▎',
         buffer_close_icon = '',
         modified_icon = '●',
         close_icon = '',
@@ -105,7 +107,7 @@ require("formatter").setup {
 }
 
 
-require('gitsigns').setup()
+-- require('gitsigns').setup()
 require('plugin_setting.cmp')
 require('plugin_setting.lspconfig')
 require('plugin_setting.lsp_signature')
