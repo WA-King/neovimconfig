@@ -52,15 +52,25 @@ return require('packer').startup(function()
     }
     use { 'p00f/nvim-ts-rainbow' }
     use { 'mhartington/formatter.nvim' }
-    use({
-       "glepnir/lspsaga.nvim",
+    use{
+        "glepnir/lspsaga.nvim",
         branch = "main",
         config = function()
-        local saga = require("lspsaga")
+            local saga = require("lspsaga")
             saga.init_lsp_saga({
-            -- your configuration
-        })
-    end,
-})
+                -- your configuration
+            })
+        end
+    }
+    use{
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    }
+    use { "RRethy/vim-illuminate" }
 end)
 
