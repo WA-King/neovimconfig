@@ -1,7 +1,7 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     --Packer can manage itself
     use 'wbthomason/packer.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -52,16 +52,14 @@ return require('packer').startup(function()
     }
     use { 'p00f/nvim-ts-rainbow' }
     use { 'mhartington/formatter.nvim' }
-    use{
+    use({
         "glepnir/lspsaga.nvim",
         branch = "main",
         config = function()
-            local saga = require("lspsaga")
-            saga.init_lsp_saga({
-                -- your configuration
-            })
-        end
-    }
+            require("lspsaga").setup({})
+        end,
+        requires = { {"nvim-tree/nvim-web-devicons"} }
+    })
     use{
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
