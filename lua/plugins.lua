@@ -1,74 +1,33 @@
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function(use)
-    --Packer can manage itself
-    use 'wbthomason/packer.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
-    -- using packer.nvim
-    use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use {'neovim/nvim-lspconfig'}
-    use {'williamboman/nvim-lsp-installer'}
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-nvim-lsp',
+require("lazy").setup({
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+    {"folke/tokyonight.nvim",lazy = false,priority = 1000,opts = {}},
+    {
+	'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+    },
+    {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+    'mhartington/formatter.nvim',
+    {
+	'hrsh7th/nvim-cmp',
+        dependencies = { 
+	    'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-nvim-lua',
-            'hrsh7th/cmp-path'
+            'hrsh7th/cmp-path',
         },
-    }
-    use {"L3MON4D3/LuaSnip"}
-    use {"lukas-reineke/indent-blankline.nvim"}
-    use { 'folke/tokyonight.nvim'}
-    use { "ray-x/lsp_signature.nvim"}
-    use {
-        'lewis6991/gitsigns.nvim',
-        requires = { 'nvim-lua/plenary.nvim' }
-    }
-    use { 'b3nj5m1n/kommentary' }
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icon
-        },
-        config = function() require'nvim-tree'.setup {} end
-    }
-    use {
-        'phaazon/hop.nvim',
-        branch = 'v1', -- optional but strongly recommended
-        config = function()
-            -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-        end
-    }
-    use { 'p00f/nvim-ts-rainbow' }
-    use { 'mhartington/formatter.nvim' }
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function()
-            require("lspsaga").setup({})
-        end,
-        requires = { {"nvim-tree/nvim-web-devicons"} }
-    })
-    use{
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    }
-    use { "RRethy/vim-illuminate" }
-end)
-
+    },
+    'phaazon/hop.nvim',
+    'neovim/nvim-lspconfig',
+})

@@ -66,7 +66,7 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
-require("indent_blankline").setup {}
+require("ibl").setup()
 
 require("bufferline").setup {
     options = {
@@ -111,4 +111,4 @@ require("formatter").setup {
 require('plugin_setting.cmp')
 require('plugin_setting.lspconfig')
 require('plugin_setting.lsp_signature')
-
+require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
