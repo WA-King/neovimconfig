@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    rocks = { enabled = false },
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     {"folke/tokyonight.nvim",lazy = false,priority = 1000,opts = {}},
     {
@@ -51,5 +52,5 @@ require("lazy").setup({
         event = "VeryLazy",
         opts = {},
         config = function(_, opts) require'lsp_signature'.setup(opts) end
-        }
-}
+    }
+})
